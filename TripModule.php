@@ -24,7 +24,7 @@ class TripModule extends \yii\base\Module
      *
      * @var string
      */
-    public $post_table = '{{%trip}}';
+    //public $trip_table = '{{%trip}}';
     public $controllerNamespace = 'yeesoft\trip\controllers';
 
 }
