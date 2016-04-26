@@ -15,7 +15,6 @@ class m160403_215124_i18n_yee_trip_source extends SourceMessagesMigration
         return [
             'Air Conditioner' => 1,
             'Allowed Luggage' => 1,
-            'Allowed Luggage' => 1,
             'Bus' => 1,
             'Car' => 1,
             'Cities Between' => 1,
@@ -49,6 +48,9 @@ class m160403_215124_i18n_yee_trip_source extends SourceMessagesMigration
             'Vehicle Model' => 1,
             'Vehicle' => 1,
             'Wi-Fi' => 1,
+            'Add Trip' => 1,
+            'My Trips' => 1,
+            'Trip' => 1,
         ];
     }
 }

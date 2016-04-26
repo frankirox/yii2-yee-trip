@@ -2,6 +2,7 @@
 
 namespace yeesoft\trip\models;
 
+use yeesoft\media\widgets\uploader\UploaderBehavior;
 use yeesoft\models\OwnerAccess;
 use yeesoft\models\User;
 use Yii;
@@ -71,7 +72,9 @@ class Trip extends ActiveRecord implements OwnerAccess
             [['city_between', 'schedule', 'price', 'contacts', 'details'], 'string'],
             [['city_from', 'city_to'], 'string', 'max' => 64],
             [['vehicle_model'], 'string', 'max' => 127],
-            [['date'], 'safe'],
+
+            ['date', 'date', 'timestampAttribute' => 'date', 'format' => 'yyyy-MM-dd'],
+            ['date', 'default', 'value' => time()],
         ];
     }
 
@@ -144,6 +147,7 @@ class Trip extends ActiveRecord implements OwnerAccess
         return [
             TimestampBehavior::className(),
             BlameableBehavior::className(),
+            UploaderBehavior::className(),
         ];
     }
 
@@ -289,5 +293,10 @@ class Trip extends ActiveRecord implements OwnerAccess
             self::LUGGAGE_LARGE => Yii::t('yee/trip', 'Large bag (about 30 kg.)'),
             self::LUGGAGE_UNLIMITED => Yii::t('yee/trip', 'Not limited'),
         ];
+    }
+
+    public function getTripDate()
+    {
+        return Yii::$app->formatter->asDate(($this->isNewRecord) ? time() : $this->date);
     }
 }
