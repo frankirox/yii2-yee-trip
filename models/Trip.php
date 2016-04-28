@@ -299,4 +299,17 @@ class Trip extends ActiveRecord implements OwnerAccess
     {
         return Yii::$app->formatter->asDate(($this->isNewRecord) ? time() : $this->date);
     }
+    
+    public function getCommentsCount()
+    {
+        try {
+            return \yeesoft\comments\models\Comment::find()
+                    ->where(['model' => Trip::className()])
+                    ->where(['model_id' => $this->primaryKey])
+                    ->count();
+        } catch (Exception $exc) {
+            return 0;
+        }
+       
+    }
 }
