@@ -8,7 +8,7 @@ use yeesoft\models\User;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
-use yii\db\ActiveRecord;
+use yeesoft\db\ActiveRecord;
 
 /**
  * This is the model class for table "{{%trip}}".

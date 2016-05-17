@@ -59,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'actions' => [Url::to(['bulk-delete']) => Yii::t('yee', 'Delete')] //Configure here you bulk actions
                 ],
                 'columns' => [
-                    ['class' => 'yii\grid\CheckboxColumn', 'options' => ['style' => 'width:10px']],
+                    ['class' => 'yeesoft\grid\CheckboxColumn', 'options' => ['style' => 'width:10px']],
                     [
                         'attribute' => 'vehicle_model',
                         'class' => 'yeesoft\grid\columns\TitleActionColumn',
@@ -78,10 +78,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'created_by',
                         'filter' => User::getUsersList(),
-                        'filterInputOptions' => [],
                         'value' => function (Trip $model) {
                             return Html::a($model->author->username,
-                                ['/user/default/view', 'id' => $model->created_by],
+                                ['/user/default/update', 'id' => $model->created_by],
                                 ['data-pjax' => 0]);
                         },
                         'format' => 'raw',

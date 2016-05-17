@@ -4,11 +4,11 @@ use yeesoft\helpers\Html;
 use yeesoft\trip\models\Trip;
 use yeesoft\widgets\inputs\RadioToggle;
 use yii\jui\DatePicker;
-use yii\widgets\ActiveForm;
+use yeesoft\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model yeesoft\trip\models\Trip */
-/* @var $form yii\widgets\ActiveForm */
+/* @var $form yeesoft\widgets\ActiveForm */
 
 $js = <<<JS
     $('a.btn[data-toggle="radiotab-triptype"]').click(function(){
@@ -89,7 +89,7 @@ $this->registerJs($js);
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="record-info">
-                        <?= $form->field($model, 'status')->dropDownList(Trip::getStatusList(), ['class' => '']) ?>
+                        <?= $form->field($model, 'status')->dropDownList(Trip::getStatusList()) ?>
 
                         <?php if (!$model->isNewRecord): ?>
 

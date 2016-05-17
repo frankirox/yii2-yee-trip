@@ -12,7 +12,7 @@ class m160403_214733_create_trip_table extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB';
         }
 
-        $this->createTable('trip', [
+        $this->createTable('{{%trip}}', [
             'id' => $this->primaryKey(),
             'type' => $this->integer(1)->notNull()->defaultValue(2),
             'city_from' => $this->string(64)->notNull(),
@@ -36,20 +36,20 @@ class m160403_214733_create_trip_table extends Migration
             'updated_at' => $this->integer(),
         ], $tableOptions);
 
-        $this->createIndex('index_trip_type', 'trip', 'type');
-        $this->createIndex('index_trip_vehicle', 'trip', 'vehicle');
-        $this->createIndex('index_trip_luggage', 'trip', 'luggage');
-        $this->createIndex('index_trip_status', 'trip', 'status');
+        $this->createIndex('index_trip_type', '{{%trip}}', 'type');
+        $this->createIndex('index_trip_vehicle', '{{%trip}}', 'vehicle');
+        $this->createIndex('index_trip_luggage', '{{%trip}}', 'luggage');
+        $this->createIndex('index_trip_status', '{{%trip}}', 'status');
 
-        $this->addForeignKey('fk_trip_created_by', 'trip', 'created_by', 'user', 'id', 'SET NULL', 'CASCADE');
-        $this->addForeignKey('fk_trip_updated_by', 'trip', 'updated_by', 'user', 'id', 'SET NULL', 'CASCADE');
+        $this->addForeignKey('fk_trip_created_by', '{{%trip}}', 'created_by', '{{%user}}', 'id', 'SET NULL', 'CASCADE');
+        $this->addForeignKey('fk_trip_updated_by', '{{%trip}}', 'updated_by', '{{%user}}', 'id', 'SET NULL', 'CASCADE');
     }
 
     public function safeDown()
     {
-        $this->dropForeignKey('fk_trip_created_by', 'trip');
-        $this->dropForeignKey('fk_trip_updated_by', 'trip');
+        $this->dropForeignKey('fk_trip_created_by', '{{%trip}}');
+        $this->dropForeignKey('fk_trip_updated_by', '{{%trip}}');
 
-        $this->dropTable('trip');
+        $this->dropTable('{{%trip}}');
     }
 }
