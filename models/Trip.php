@@ -9,6 +9,7 @@ use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yeesoft\db\ActiveRecord;
+use yeesoft\comments\models\Comment;
 
 /**
  * This is the model class for table "{{%trip}}".
@@ -304,9 +305,10 @@ class Trip extends ActiveRecord implements OwnerAccess
     public function getCommentsCount()
     {
         try {
-            return \yeesoft\comments\models\Comment::find()
+            return Comment::find()
                     ->where(['model' => Trip::className()])
-                    ->where(['model_id' => $this->primaryKey])
+                    ->andWhere(['model_id' => $this->primaryKey])
+                    ->andWhere(['status' => Comment::STATUS_APPROVED])
                     ->count();
         } catch (Exception $exc) {
             return 0;
