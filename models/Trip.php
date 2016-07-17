@@ -297,6 +297,7 @@ class Trip extends ActiveRecord implements OwnerAccess
 
     public function getTripDate()
     {
+        Yii::$app->formatter->locale = Yii::$app->language;
         return Yii::$app->formatter->asDate(($this->isNewRecord) ? time() : $this->date);
     }
     
