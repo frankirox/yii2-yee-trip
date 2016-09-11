@@ -43,9 +43,14 @@ $this->registerJs($js);
 
                     <?= $form->field($model, 'type')->widget(RadioToggle::className(), ['items' => Trip::getTypes()]) ?>
 
-                    <?= $form->field($model, 'date', ['options' => ['style' => 'display:none']])->widget(DatePicker::className(), ['dateFormat' => 'yyyy-MM-dd', 'options' => ['class' => 'form-control']]) ?>
+                    <?php
+                    $dateOptions = ($model->type == 2) ? ['options' => ['style' => 'display:none']] : [];
+                    $scheduleOptions = ($model->type == 1) ? ['options' => ['style' => 'display:none']] : [];
+                    ?>
+                    
+                    <?= $form->field($model, 'date', $dateOptions)->widget(DatePicker::className(), ['dateFormat' => 'yyyy-MM-dd', 'options' => ['class' => 'form-control']]) ?>
 
-                    <?= $form->field($model, 'schedule')->textarea(['rows' => 3]) ?>
+                    <?= $form->field($model, 'schedule', $scheduleOptions)->textarea(['rows' => 3]) ?>
 
                     <?= $form->field($model, 'city_from')->textInput(['maxlength' => true]) ?>
 
