@@ -65,7 +65,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'class' => 'yeesoft\grid\columns\TitleActionColumn',
                         'controller' => '/trip/default',
                         'title' => function (Trip $model) {
-                            $vehicle = $model->getVehicles()[$model->vehicle] . ' > ' . $model->vehicle_model;
+                            $vehicle = $model->getVehicles()[$model->vehicle] . ' > ' . Html::encode($model->vehicle_model);
                             return Html::a($vehicle, ['update', 'id' => $model->id], ['data-pjax' => 0]);
                         },
                         'buttonsTemplate' => '{update} {delete}',
@@ -79,7 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'created_by',
                         'filter' => User::getUsersList(),
                         'value' => function (Trip $model) {
-                            return Html::a($model->author->username,
+                            return Html::a(Html::encode($model->author->username),
                                 ['/user/default/update', 'id' => $model->created_by],
                                 ['data-pjax' => 0]);
                         },
